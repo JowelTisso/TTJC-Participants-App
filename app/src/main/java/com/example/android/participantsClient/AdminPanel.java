@@ -59,8 +59,8 @@ public class AdminPanel extends AppCompatActivity {
     private ImagePopupX imagePopup;
     private Spinner mSpinner;
     private EditText mSearchBar;
-    private final String twitterAccessToken = "AAAAAAAAAAAAAAAAAAAAAOtMDQEAAAAAshFTWz9%2BKc1Sx2Tiga6ffs7xf%2Bw%3DqkXI8yKBcNHgojZaAKIwyFGTdbsz1QEh49AbWLb0poYiQOpfPV";
-
+    private final String twitterAccessToken ="";
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
