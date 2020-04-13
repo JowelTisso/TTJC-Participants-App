@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WebViewParticipant"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp">
+    <ProgressBar
+        android:id="@+id/progress_horizontalx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:minHeight="4dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:elevation="5dp"
+        android:background="@drawable/background_shadow"
+        android:layout_marginBottom="5dp"
+        >
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_arrow_back_white_24dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:background="@color/colorWhite"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/webAddressBar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:background="@android:color/white"
+            android:fontFamily="@font/caviardreams"
+            android:inputType="text"
+            android:hint="https://"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp" />
+
+        <ImageView
+            android:id="@+id/btnClear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_close_black_24dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:background="@color/colorWhite"
+            />
+    </LinearLayout>
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

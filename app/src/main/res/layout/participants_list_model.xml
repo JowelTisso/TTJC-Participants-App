@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="6dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/twitterProfilePic"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center_vertical"
+        android:src="@android:drawable/btn_star_big_on"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Name :"
+                android:fontFamily="@font/caviardreams_bold"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/titleSlot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:fontFamily="@font/caviardreams_bold"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Skills :"
+                android:textSize="12sp"
+                android:fontFamily="@font/caviardreams_bold"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/descriptionSlot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Skills"
+                android:textSize="12sp"
+                android:fontFamily="@font/caviardreams_bold"
+                android:layout_weight="2"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

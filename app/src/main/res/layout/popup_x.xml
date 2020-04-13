@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popupX"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8">
+    <ImageView
+        android:id="@+id/closeBtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/close" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@android:drawable/ic_dialog_alert"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btnttjcPage"
+        android:layout_marginTop="10dp"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:text="link"
+        android:background="@drawable/btn_background_inside"
+        android:textColor="@android:color/white"
+        android:textSize="21sp"
+        android:layout_weight="1"
+        android:foreground="?android:attr/selectableItemBackground"
+        />
+</LinearLayout>

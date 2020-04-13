@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.android.participantsClient.AboutActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/android"
+        android:layout_marginBottom="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        android:fontFamily="@font/caviardreams"
+        android:textColor="@color/colorChat"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/note"
+        android:fontFamily="@font/caviardreams"
+        android:textColor="@color/colorChat"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="20dp"
+        />
+
+    <Button
+        android:id="@+id/mylink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="joweltisso"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/btn_background_inside"
+        />
+
+</LinearLayout>

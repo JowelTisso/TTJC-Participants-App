@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.android.participantsClient.AdminPanelHomeActivity">
+
+    <LinearLayout
+        android:id="@+id/adminPanelContainer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/background_shadow"
+        android:elevation="5dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAdminPanel" />
+
+        <Button
+            android:id="@+id/btnAdminPanel"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_background"
+            android:fontFamily="@font/caviardreams_bold"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="Admin Panel"
+            android:textColor="@color/colorTitlePrimary"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/privacyPolicyContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:background="@drawable/background_shadow"
+        android:elevation="5dp"
+        >
+        <FrameLayout
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPolicy" />
+
+        <Button
+            android:id="@+id/btnPrivacyPolicy"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_background"
+            android:fontFamily="@font/caviardreams_bold"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="privacy Policy"
+            android:textColor="@color/colorTitlePrimary"
+            android:textSize="22sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/aboutContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:background="@drawable/background_shadow"
+        android:elevation="5dp"
+        >
+        <FrameLayout
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAbout" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_background"
+            android:fontFamily="@font/caviardreams_bold"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="About"
+            android:textColor="@color/colorTitlePrimary"
+            android:textSize="22sp"
+            />
+    </LinearLayout>
+</LinearLayout>

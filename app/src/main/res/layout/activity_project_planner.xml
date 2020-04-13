@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.participantsClient.ProjectPlannerActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Overall Project Timeline"
+            android:textAlignment="center"
+            android:fontFamily="@font/caviardreams_bold"
+            android:textSize="21sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13th March"
+            android:fontFamily="@font/caviardreams"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="30th June"
+            android:fontFamily="@font/caviardreams"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/totalTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/caviardreams"
+                android:gravity="bottom"
+                android:text="Total"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerMenu"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/totalTitle"
+                android:gravity="bottom" />
+
+            <TextView
+                android:id="@+id/totalMonthSlotx"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_toLeftOf="@id/monthTitlex"
+                android:gravity="bottom"
+                android:text="3"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/monthTitlex"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@id/totalDaysSlotx"
+                android:gravity="bottom"
+                android:text="month"
+                android:fontFamily="@font/caviardreams"
+                android:textStyle="bold"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/totalDaysSlotx"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@id/dayTitlex"
+                android:gravity="bottom"
+                android:text="32"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/dayTitlex"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:gravity="bottom"
+                android:text="days"
+                android:fontFamily="@font/caviardreams"
+                android:textStyle="bold"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/remainingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="bottom"
+                android:text="Total remaining"
+                android:fontFamily="@font/caviardreams"
+                android:textStyle="bold"
+                android:textSize="13sp" />
+
+            <Spinner
+                android:id="@+id/spinnerMenuRemaining"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/remainingTitle" />
+
+            <TextView
+                android:id="@+id/remainingMonthSlot"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_toLeftOf="@id/monthTitle"
+                android:gravity="bottom"
+                android:text="3"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/monthTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@id/remainingDaysSlot"
+                android:gravity="bottom"
+                android:text="month"
+                android:fontFamily="@font/caviardreams"
+                android:textStyle="bold"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/remainingDaysSlot"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@id/dayTitle"
+                android:gravity="bottom"
+                android:text="12"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/dayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/caviardreams"
+                android:gravity="bottom"
+                android:text="days"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            >
+
+            <Button
+                android:id="@+id/btnMyProject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_background_inside"
+                android:padding="10dp"
+                android:text="My project"
+                android:fontFamily="@font/caviardreams_bold"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
