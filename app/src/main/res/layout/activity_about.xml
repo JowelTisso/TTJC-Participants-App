@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.android.participantsClient.AboutActivity">
+    tools:context="com.job.challenge.ttjcParticipantsApp.AboutActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="140dp"

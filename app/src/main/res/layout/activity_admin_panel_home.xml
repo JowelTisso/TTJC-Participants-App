@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.android.participantsClient.AdminPanelHomeActivity">
+    tools:context="com.job.challenge.ttjcParticipantsApp.AdminPanelHomeActivity">
 
     <LinearLayout
         android:id="@+id/adminPanelContainer2"
@@ -33,7 +33,6 @@
             android:textColor="@color/colorTitlePrimary"
             android:textSize="22sp" />
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/privacyPolicyContainer"
         android:layout_width="wrap_content"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.participantsClient.ProjectList"
+    tools:context="com.job.challenge.ttjcParticipantsApp.ProjectList"
     android:orientation="vertical"
     >
     <LinearLayout
@@ -24,7 +24,13 @@
             android:textSize="21sp" />
 
     </LinearLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBarProjectList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
     <ListView
         android:id="@+id/projectListView"
         android:layout_width="match_parent"

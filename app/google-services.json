@@ -42,6 +42,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882781946123:android:47d0a8f679cab877b0220e",
+        "android_client_info": {
+          "package_name": "com.job.challenge.ttjcParticipantsApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882781946123-t77c995vc3s9num1om14nbivq2iicjt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.job.challenge.ttjcParticipantsApp",
+            "certificate_hash": "971dfd80ca746691b98d76fdbd4b27ad5e671b80"
+          }
+        },
+        {
+          "client_id": "882781946123-8n5otkjv05k89ho9nlb8h892veqmic6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5A4qL1Vr917_uO7p7YPt7QJXEM51RT3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882781946123-8n5otkjv05k89ho9nlb8h892veqmic6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
