@@ -2,4 +2,6 @@
     <string name="app_name">TTJC Participants App</string>
     <string name="about">This app is made by Jowel Tisso, for an assignment. It is made to help the participants to keep track of their project progress and to check participants details and their field of interest.</string>
     <string name="note">**If you find any issue with the app please do leave a comment in the discussion section, Thank you**</string>
+    <string name="note_info">**Images are fetched from twitter, so please provide proper twitter link in your PR if possible and notify in the discussion section.</string>
+    <string name="note_info_1">\nThe blue twitter icon/empty profile pictures in the list is because the users has not provided their twitter link, or has not provided in a proper format which is \n[Twitter](https://twitter.com/joweltisso)\n</string>
 </resources>
