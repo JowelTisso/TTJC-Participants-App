@@ -16,4 +16,5 @@
     <color name="colorAdminPanel">#C56C94</color>
     <color name="colorPolicy">#7986CB</color>
     <color name="colorAbout">#FF8A65</color>
+    <color name="greenAccent">#6ffb17</color>
 </resources>

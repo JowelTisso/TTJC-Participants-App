@@ -83,21 +83,20 @@
                             android:layout_width="5dp"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
-                            android:background="@color/colorAccent" />
+                            android:background="@color/greenAccent" />
 
                         <Button
                             android:id="@+id/countParticipants"
+                            style="?android:attr/borderlessButtonStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="35dp"
                             android:layout_toEndOf="@id/countFrame"
                             android:layout_toRightOf="@id/countFrame"
                             android:background="@color/colorWhite"
                             android:fontFamily="@font/caviardreams_bold"
                             android:gravity="center"
-                            android:paddingLeft="22dp"
+                            android:paddingLeft="5dp"
                             android:text="Count"
-                            style="?android:attr/borderlessButtonStyle"
                             android:textColor="@color/colorTitlePrimary"
                             android:textSize="24sp" />
 
@@ -107,6 +106,7 @@
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
                             android:background="@color/colorWhite"
+                            android:theme="@style/AppThemeForProgress"
                              />
                     </RelativeLayout>
                 </LinearLayout>
