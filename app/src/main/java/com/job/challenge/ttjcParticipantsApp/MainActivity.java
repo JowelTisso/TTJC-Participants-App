@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Method for checking if the internet connection is active or not
-    private static boolean isConnectingToInternet(Context mContext) {
+    public static boolean isConnectingToInternet(Context mContext) {
         if (mContext == null) return false;
 
         ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);

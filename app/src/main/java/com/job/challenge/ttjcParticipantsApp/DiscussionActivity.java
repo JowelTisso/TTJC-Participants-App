@@ -278,7 +278,13 @@ public class DiscussionActivity extends AppCompatActivity {
     private void onSignedInInitialize(String displayName, Uri profilePicUri) {
         mUsername = displayName;
         mProfilePicUri = profilePicUri.toString();
-        attachDatabaseReadListener();
+        //To check internet connection and if available attach database
+        if(MainActivity.isConnectingToInternet(this)){
+            attachDatabaseReadListener();
+        }else {
+            mProgressBar.setVisibility(View.GONE);
+            Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void onSignedOutCleanUp() {

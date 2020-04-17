@@ -44,7 +44,7 @@ public class ProjectTimeline extends AppCompatActivity {
 
         Intent receiveItem = getIntent();
         final ProjectItem newItem = receiveItem.getParcelableExtra("projectObject");
-//        String modifyingKey = newItem.getProjectKey();
+
         int remainingDaysValue = newItem.getTotalDays() - newItem.getDaysGone();
 
         title.setText(newItem.getTitle());

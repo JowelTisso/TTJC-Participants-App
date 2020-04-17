@@ -114,34 +114,33 @@ public class AddProject extends AppCompatActivity {
         });
 
 
-        Intent receiveItem = getIntent();
-        final int counter = receiveItem.getIntExtra("counter",1);
-        boolean editing = receiveItem.getBooleanExtra("editMode",false);
-        if (editing){
-            final ProjectItem newItem = receiveItem.getParcelableExtra("projectToEdit");
-            projectKey = newItem.getProjectKey();
-            Log.i("Key","TEST : KEY = "+projectKey);
-            String startDate = newItem.getStartDate();
-            String[] split = startDate.split("-");
-            int startD = Integer.parseInt(split[0]);
-            String startM = split[1];
+            Intent receiveItem = getIntent();
+            final int counter = receiveItem.getIntExtra("counter",1);
+            boolean editing = receiveItem.getBooleanExtra("editMode",false);
+            if (editing){
+                final ProjectItem newItem = receiveItem.getParcelableExtra("projectToEdit");
+                projectKey = newItem.getProjectKey();
+                String startDate = newItem.getStartDate();
+                String[] split = startDate.split("-");
+                int startD = Integer.parseInt(split[0]);
+                String startM = split[1];
 
-            String endDate = newItem.getEndDate();
-            String[] splitend = endDate.split("-");
-            int endD = Integer.parseInt(splitend[0]);
-            String endM = splitend[1];
+                String endDate = newItem.getEndDate();
+                String[] splitend = endDate.split("-");
+                int endD = Integer.parseInt(splitend[0]);
+                String endM = splitend[1];
 
 
-            ProjectTitleEd.setText(newItem.getTitle());
-            ProjectDescEd.setText(newItem.getDesc());
-            ProjectCategoryEd.setText(newItem.getCategory());
-            ProjectLanguageEd.setText(newItem.getLanguage());
-            ProjectFeaturesEd.setText(newItem.getFeatures());
-            mStartDatePicker.setSelection(startD);
-            mStartMonthPicker.setSelection(getMonthInt(startM));
-            mEndDatePicker.setSelection(endD);
-            mEndMonthPicker.setSelection(getMonthInt(endM));
-        }
+                ProjectTitleEd.setText(newItem.getTitle());
+                ProjectDescEd.setText(newItem.getDesc());
+                ProjectCategoryEd.setText(newItem.getCategory());
+                ProjectLanguageEd.setText(newItem.getLanguage());
+                ProjectFeaturesEd.setText(newItem.getFeatures());
+                mStartDatePicker.setSelection(startD);
+                mStartMonthPicker.setSelection(getMonthInt(startM));
+                mEndDatePicker.setSelection(endD);
+                mEndMonthPicker.setSelection(getMonthInt(endM));
+            }
 
 
 

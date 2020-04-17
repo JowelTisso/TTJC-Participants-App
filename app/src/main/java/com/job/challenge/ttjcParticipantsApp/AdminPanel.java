@@ -156,7 +156,14 @@ public class AdminPanel extends AppCompatActivity {
             }
         });
 
-        attachDatabaseReadListener(null, 1);
+        //To check internet connection and if available attach database
+        if(MainActivity.isConnectingToInternet(this)){
+            attachDatabaseReadListener(null, 1);
+        }else {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        }
+
 
         String[] items = new String[]{"Select Skill", "All", "React", "ReactJs", "ReactNative", "JavaScript", "HTML", "CSS", "Android", "Java", "Flutter", "Bootstrap", "NodeJs",};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items) {
