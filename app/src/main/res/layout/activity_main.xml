@@ -83,7 +83,7 @@
                             android:layout_width="5dp"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
-                            android:background="@color/greenAccent" />
+                            android:background="@color/colorAccent" />
 
                         <Button
                             android:id="@+id/countParticipants"
@@ -106,7 +106,6 @@
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
                             android:background="@color/colorWhite"
-                            android:theme="@style/AppThemeForProgress"
                              />
                     </RelativeLayout>
                 </LinearLayout>

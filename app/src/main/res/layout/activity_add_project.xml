@@ -1,189 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.job.challenge.ttjcParticipantsApp.AddProject">
 
     <TextView
+        android:id="@+id/headerTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:fontFamily="@font/caviardreams_bold"
         android:gravity="center"
         android:text="New Project"
-        android:fontFamily="@font/caviardreams_bold"
         android:textSize="23sp" />
 
-
-    <EditText
-        android:id="@+id/ProjectTitle"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="Title"
-        android:paddingLeft="10dp"
-        android:layout_margin="5dp"
-        android:elevation="2dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/caviardreams"
-        android:background="@drawable/chat_background"
-        android:inputType="textMultiLine" />
-
-    <EditText
-        android:id="@+id/ProjectDesc"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="Description"
-        android:paddingLeft="10dp"
-        android:layout_margin="5dp"
-        android:elevation="2dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/caviardreams"
-        android:background="@drawable/chat_background"
-        android:inputType="textMultiLine" />
-    <EditText
-        android:id="@+id/ProjectCategory"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="Category"
-        android:paddingLeft="10dp"
-        android:layout_margin="5dp"
-        android:elevation="2dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/caviardreams"
-        android:background="@drawable/chat_background"
-        android:inputType="textMultiLine" />
-    <EditText
-        android:id="@+id/ProjectLanguage"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="Language"
-        android:paddingLeft="10dp"
-        android:layout_margin="5dp"
-        android:elevation="2dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/caviardreams"
-        android:background="@drawable/chat_background"
-        android:inputType="textMultiLine" />
-    <LinearLayout
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Start Date"
-            android:fontFamily="@font/caviardreams"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            >
-            <Spinner
-                android:id="@+id/startDatePicker"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:text="00"
-                android:textSize="19sp"
-                android:layout_marginRight="10dp"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_margin="5dp"
-                android:elevation="2dp"
-                android:translationZ="2dp"
-                android:background="@drawable/chat_background"
-                />
-            <Spinner
-                android:id="@+id/startMonthPicker"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:text="00"
-                android:textAlignment="center"
-                android:textSize="19sp"
-                android:gravity="center"
-                android:layout_margin="5dp"
-                android:elevation="2dp"
-                android:translationZ="2dp"
-                android:background="@drawable/chat_background"
-                />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Date"
-            android:fontFamily="@font/caviardreams"
-            android:gravity="center"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            >
-            <Spinner
-                android:id="@+id/endDatePicker"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:text="00"
-                android:textSize="19sp"
-                android:layout_marginRight="10dp"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_margin="5dp"
-                android:elevation="2dp"
-                android:translationZ="2dp"
-                android:background="@drawable/chat_background"
-                />
-            <Spinner
-                android:id="@+id/endMonthPicker"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:text="00"
-                android:textAlignment="center"
-                android:textSize="19sp"
-                android:gravity="center"
-                android:layout_margin="5dp"
-                android:elevation="2dp"
-                android:translationZ="2dp"
-                android:background="@drawable/chat_background"
-                />
-        </LinearLayout>
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/ProjectFeatures"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_margin="5dp"
-        android:hint="Features"
-        android:elevation="2dp"
-        android:paddingLeft="10dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/caviardreams"
-        android:background="@drawable/chat_background"
-        android:inputType="textMultiLine" />
-    <Button
-        android:id="@+id/btnDone"
-        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="done"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@id/headerTitle"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/ProjectTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/chat_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/caviardreams"
+                android:hint="Title"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ProjectDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/chat_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/caviardreams"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ProjectCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/chat_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/caviardreams"
+                android:hint="Category"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ProjectLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/chat_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/caviardreams"
+                android:hint="Language"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/caviardreams"
+                    android:gravity="center"
+                    android:text="Start Date"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:id="@+id/startDatePicker"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/chat_background"
+                        android:elevation="2dp"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAlignment="center"
+                        android:textSize="19sp"
+                        android:translationZ="2dp" />
+
+                    <Spinner
+                        android:id="@+id/startMonthPicker"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/chat_background"
+                        android:elevation="2dp"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAlignment="center"
+                        android:textSize="19sp"
+                        android:translationZ="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/caviardreams"
+                    android:gravity="center"
+                    android:text="End Date"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:id="@+id/endDatePicker"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/chat_background"
+                        android:elevation="2dp"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAlignment="center"
+                        android:textSize="19sp"
+                        android:translationZ="2dp" />
+
+                    <Spinner
+                        android:id="@+id/endMonthPicker"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/chat_background"
+                        android:elevation="2dp"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAlignment="center"
+                        android:textSize="19sp"
+                        android:translationZ="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/ProjectFeatures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/chat_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/caviardreams"
+                android:hint="Features"
+                android:inputType="textMultiLine"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="55dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_save_white_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
         android:textColor="@android:color/white"
-        android:background="@drawable/btn_background_inside"
         />
-</LinearLayout>
+</RelativeLayout>

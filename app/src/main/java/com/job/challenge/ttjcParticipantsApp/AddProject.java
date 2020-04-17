@@ -2,9 +2,11 @@ package com.job.challenge.ttjcParticipantsApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,12 +27,13 @@ public class AddProject extends AppCompatActivity {
 
     Spinner mStartDatePicker, mStartMonthPicker;
     Spinner mEndDatePicker, mEndMonthPicker;
-    Button mBtnDone;
+    FloatingActionButton mBtnDone;
     EditText ProjectTitleEd, ProjectDescEd, ProjectCategoryEd, ProjectLanguageEd, ProjectFeaturesEd;
     String ProjectTitleS, ProjectDescS, ProjectCategoryS, ProjectLanguageS, ProjectStartDateS, ProjectStartMonthS, ProjectEndDateS, ProjectEndMonthS, ProjectFeatureS;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mMessageDatabaseReference;
     private String android_id ;
+    String projectKey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +113,38 @@ public class AddProject extends AppCompatActivity {
             }
         });
 
+
+        Intent receiveItem = getIntent();
+        final int counter = receiveItem.getIntExtra("counter",1);
+        boolean editing = receiveItem.getBooleanExtra("editMode",false);
+        if (editing){
+            final ProjectItem newItem = receiveItem.getParcelableExtra("projectToEdit");
+            projectKey = newItem.getProjectKey();
+            Log.i("Key","TEST : KEY = "+projectKey);
+            String startDate = newItem.getStartDate();
+            String[] split = startDate.split("-");
+            int startD = Integer.parseInt(split[0]);
+            String startM = split[1];
+
+            String endDate = newItem.getEndDate();
+            String[] splitend = endDate.split("-");
+            int endD = Integer.parseInt(splitend[0]);
+            String endM = splitend[1];
+
+
+            ProjectTitleEd.setText(newItem.getTitle());
+            ProjectDescEd.setText(newItem.getDesc());
+            ProjectCategoryEd.setText(newItem.getCategory());
+            ProjectLanguageEd.setText(newItem.getLanguage());
+            ProjectFeaturesEd.setText(newItem.getFeatures());
+            mStartDatePicker.setSelection(startD);
+            mStartMonthPicker.setSelection(getMonthInt(startM));
+            mEndDatePicker.setSelection(endD);
+            mEndMonthPicker.setSelection(getMonthInt(endM));
+        }
+
+
+
         //To send data to the firebase database for the project list
         mBtnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,9 +161,18 @@ public class AddProject extends AppCompatActivity {
                     //if true sending the data to database
                     int checkDays = getTotalDays();
                     if (checkDays < 22) {
-                        DatabaseReference ref = mMessageDatabaseReference.push();
-                        ProjectItem projectItem = new ProjectItem(ProjectTitleS, ProjectDescS, ProjectCategoryS, ProjectLanguageS, ProjectStartDateS + "-" + ProjectStartMonthS, ProjectEndDateS + "-" + ProjectEndMonthS, ProjectFeatureS, 20, ref.getKey());
-                        ref.setValue(projectItem);
+                        DatabaseReference ref = null;
+                        if (counter == 1) {
+                            ref = mMessageDatabaseReference.push();
+                            ProjectItem projectItem = new ProjectItem(ProjectTitleS, ProjectDescS, ProjectCategoryS, ProjectLanguageS, ProjectStartDateS + "-" + ProjectStartMonthS, ProjectEndDateS + "-" + ProjectEndMonthS, ProjectFeatureS, checkDays, ref.getKey());
+                            ref.setValue(projectItem);
+                        } else if (counter == 2) {
+                            ref = mMessageDatabaseReference.child(projectKey);
+                            ProjectItem projectItem = new ProjectItem(ProjectTitleS, ProjectDescS, ProjectCategoryS, ProjectLanguageS, ProjectStartDateS + "-" + ProjectStartMonthS, ProjectEndDateS + "-" + ProjectEndMonthS, ProjectFeatureS, checkDays, projectKey);
+                            ref.setValue(projectItem);
+                        }
+
+
                         Toast.makeText(AddProject.this, "Saved", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(AddProject.this, "Limit exceeds for total days/project i.e. 21days/project", Toast.LENGTH_SHORT).show();
@@ -138,6 +184,31 @@ public class AddProject extends AppCompatActivity {
             }
         });
 
+
+
+
+    }
+
+    public int getMonthInt(String month){
+        int endMint ;
+        switch(month){
+            case "March":
+                endMint = 3;
+                break;
+            case "April":
+                endMint = 4;
+                break;
+            case "May":
+                endMint = 5;
+                break;
+            case "June":
+                endMint = 6;
+                break;
+            default:
+                endMint = 3;
+                break;
+        }
+        return endMint;
     }
 
     public ArrayAdapter<String> getAdapter(String[] list) {

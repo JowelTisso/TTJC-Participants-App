@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import androidx.annotation.NonNull;
@@ -121,7 +123,10 @@ public class ProjectAdapter extends ArrayAdapter<ProjectItem> {
 
     private int getDaysGone() {
         int currentDate = calendar.get(Calendar.DAY_OF_MONTH);
+        int currentMonthInt = calendar.get(Calendar.MONTH);
         int daysGone;
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String currentMonth = month_date.format(calendar.getTime());
 
         String startDate = projectItem.getStartDate();
         String[] split = startDate.split("-");
@@ -131,28 +136,58 @@ public class ProjectAdapter extends ArrayAdapter<ProjectItem> {
         String endDate = projectItem.getEndDate();
         String[] splitend = endDate.split("-");
         String endM = splitend[1];
-
+        int endMint ;
+        int endMonthDays ;
+        switch(endM){
+            case "April":
+                endMint = 3;
+                endMonthDays = daysInApril;
+                break;
+            case "May":
+                endMint = 4;
+                endMonthDays = daysInMay;
+                break;
+            case "June":
+                endMint = 5;
+                endMonthDays = daysInJune;
+                break;
+            default:
+                endMint = 2;
+                endMonthDays = daysInMarch;
+                break;
+        }
         if (startM.equals(endM)) {
             daysGone = currentDate - startD;
 
         } else {
 
-            switch (startM) {
-                case "March":
-                    startDigit = daysInMarch - startD;
-                    break;
-                case "April":
-                    startDigit = daysInApril - startD;
-                    break;
-                case "May":
-                    startDigit = daysInMay - startD;
-                    break;
-                case "June":
-                    startDigit = daysInJune - startD;
-                    break;
+            if (currentMonth.equals(startM)) {
+                daysGone = currentDate - startD;
+            } else {
+                switch (startM) {
+                    case "March":
+                        startDigit = daysInMarch - startD + 1;
+                        break;
+                    case "April":
+                        startDigit = daysInApril - startD + 1;
+                        break;
+                    case "May":
+                        startDigit = daysInMay - startD + 1;
+                        break;
+                    case "June":
+                        startDigit = daysInJune - startD + 1;
+                        break;
+                }
+                if (currentMonthInt>endMint)
+                {
+                    daysGone = startDigit + endMonthDays + currentDate;
+                }else{
+                    daysGone = startDigit + currentDate;
+                }
+
             }
 
-            daysGone = startDigit + currentDate;
+
 
         }
         return daysGone;

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -83,7 +84,7 @@ public class ProjectList extends AppCompatActivity {
         addProjectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addProjectIntent = new Intent(ProjectList.this, com.job.challenge.ttjcParticipantsApp.AddProject.class);
+                Intent addProjectIntent = new Intent(ProjectList.this, AddProject.class);
                 startActivity(addProjectIntent);
             }
         });
@@ -94,13 +95,14 @@ public class ProjectList extends AppCompatActivity {
 
     private void attachDatabaseReadListener() {
         if (mChildEventListener == null) {
+            progressBar.setVisibility(View.GONE);
+
             mChildEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     progressBar.setVisibility(View.GONE);
                     final ProjectItem projectItem = dataSnapshot.getValue(ProjectItem.class);
                     adapter.add(projectItem);
-
                 }
 
                 public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
