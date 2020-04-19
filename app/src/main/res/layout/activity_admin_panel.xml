@@ -6,45 +6,54 @@
     android:orientation="vertical"
     tools:context=".AdminPanel">
 
-    <ProgressBar
-        android:id="@+id/progress_circularZ"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="4dp" />
+        android:layout_height="3dp">
+
+        <ProgressBar
+            android:id="@+id/progress_horizontalZ"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:minHeight="3dp" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        >
+        android:paddingBottom="10dp">
+
         <TextView
             android:id="@+id/listCount"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
+            android:gravity="center"
             android:text="List Count"
-            android:textSize="18sp" />
+            android:textSize="19sp"
+            android:textAlignment="center"
+            />
+
         <EditText
             android:id="@+id/searchBar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:autofillHints=""
+            android:background="@android:color/white"
+            android:elevation="5dp"
+            android:focusable="auto"
+            android:fontFamily="@font/caviardreams"
             android:hint="Search"
+            android:iconifiedByDefault="false"
+            android:inputType="text"
             android:lines="1"
             android:maxLines="1"
-            android:focusable="auto"
-            android:inputType="text"
-            android:elevation="5dp"
-            android:fontFamily="@font/caviardreams"
-            android:paddingLeft="10dp"
-            android:background="@android:color/white"
-            android:iconifiedByDefault="false"
-            android:autofillHints=""
-            android:paddingStart="10dp" />
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,11 +65,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Participant Id"
-            android:paddingLeft="10dp"
             android:inputType="text"
             android:lines="1"
             android:maxLines="1"
-            />
+            android:paddingLeft="10dp" />
 
         <EditText
             android:id="@+id/loopCountText"
@@ -68,59 +76,62 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Loop Count"
-            android:paddingLeft="10dp"
             android:inputType="number"
-            />
+            android:paddingLeft="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnAdd"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/btn_background_inside"
             android:text="add"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+             />
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="@font/caviardreams_bold"
-            />
+            android:fontFamily="@font/caviardreams_bold" />
+
         <Button
             android:id="@+id/btnLoop"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/btn_background_inside"
             android:text="loop"
-            android:textColor="@android:color/white" />
-
+            android:background="@drawable/btn_background_inside"
+            android:textColor="@android:color/white"
+            />
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <ProgressBar
             android:id="@+id/progressBarAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             />
+
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            />
+            android:layout_margin="10dp" />
     </RelativeLayout>
 </LinearLayout>

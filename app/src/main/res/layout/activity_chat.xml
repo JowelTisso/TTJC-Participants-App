@@ -64,7 +64,7 @@
             android:textColor="@android:color/white"
             android:background="@drawable/btn_background_inside"
             android:text="Send"
-
+            android:layout_marginRight="3dp"
             />
 
     </LinearLayout>

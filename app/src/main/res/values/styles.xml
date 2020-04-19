@@ -68,4 +68,7 @@
         <item name="colorAccent">@color/greenAccent</item> <!-- Whatever color you want-->
     </style>
 
+    <style name="AppThemeForProgress2">
+        <item name="colorAccent">@color/colorWhite</item> <!-- Whatever color you want-->
+    </style>
 </resources>

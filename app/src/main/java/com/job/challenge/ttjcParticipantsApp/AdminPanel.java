@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +36,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class AdminPanel extends AppCompatActivity {
 
+    //Initial id for starting a loop
     private String participantId = "4k45hv3rm4";
     private String jsonResponse;
     private ProgressBar progressBar, progressBarList;
@@ -61,7 +61,7 @@ public class AdminPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel);
 
-        progressBar = findViewById(R.id.progress_circularZ);
+        progressBar = findViewById(R.id.progress_horizontalZ);
         progressBarList = findViewById(R.id.progressBarAdmin);
         ListView listView = findViewById(R.id.list_view);
         Button btnAdd = findViewById(R.id.btnAdd);
@@ -85,6 +85,9 @@ public class AdminPanel extends AppCompatActivity {
                 if (twitterAccessToken.length() != 0) {
                     if (inputforloopCount != null && inputforloopCount.length() != 0) {
                         inputloopCount = Integer.parseInt(inputforloopCount.getText().toString());
+                        progressBar.setVisibility(View.VISIBLE);
+                        progressBar.setIndeterminate(false);
+
                         new loopingTasks().execute();
                     } else {
                         Toast.makeText(AdminPanel.this, " loop count Field Empty", Toast.LENGTH_SHORT).show();
@@ -102,6 +105,8 @@ public class AdminPanel extends AppCompatActivity {
             public void onClick(View v) {
                 if (twitterAccessToken.length() != 0) {
                     if (inputforparticipantsId.length() != 0 && twitterAccessToken.length() != 0) {
+                        progressBar.setVisibility(View.VISIBLE);
+                        progressBar.setIndeterminate(true);
                         participantId = inputforparticipantsId.getText().toString();
                         new loopingTasks().execute();
                     } else {
@@ -148,6 +153,9 @@ public class AdminPanel extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mMessageDatabaseReference.child(randomId).removeValue();
+                        finish();
+                        overridePendingTransition(0, 0);
+                        startActivity(getIntent());
 
                     }
                 });
@@ -160,7 +168,7 @@ public class AdminPanel extends AppCompatActivity {
         if(MainActivity.isConnectingToInternet(this)){
             attachDatabaseReadListener(null, 1);
         }else {
-            progressBar.setVisibility(View.GONE);
+            progressBarList.setVisibility(View.GONE);
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
         }
 
@@ -344,8 +352,7 @@ public class AdminPanel extends AppCompatActivity {
                             JSONObject fieldsObject = previousObject.getJSONObject("fields");
                             String participantIdMix = fieldsObject.getString("slug");
                             String[] split = participantIdMix.split("@");
-                            String participantId2 = split[1];
-                            participantId = participantId2;
+                            participantId = split[1];
 
                         } else {
                             participantId = null;
@@ -379,7 +386,6 @@ public class AdminPanel extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     try {
                         jsonResponse = response.body().string();
-                        Log.i("AdminPanel","TEST : json Response = \\n"+jsonResponse);
                         JSONObject rootObject = new JSONObject(jsonResponse);
                         profileUrl = rootObject.getString("profile_image_url_https");
                         String[] separatedUrl = profileUrl.split("_normal");
@@ -397,6 +403,9 @@ public class AdminPanel extends AppCompatActivity {
                 } else {
                     //This code block is called when "twitter.com" string is present in the json response but the twitter id is not in a proper format
                     // to be fetched
+                    //This line of code is added for inappropriate twitter id e.g: Aravind20539684?s=03 ( ?s=03 <- is inappropriate)
+                    //So to fetch default twitter profile picture
+                    twitterPicUrl = "https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T.jpg";
                     DatabaseReference participantsReference = mMessageDatabaseReference.push();
                     Participants twitterUrlObject = new Participants(title, desc, pageLink, twitterPicUrl, participantsReference.getKey());
                     participantsReference.setValue(twitterUrlObject);
@@ -444,10 +453,7 @@ public class AdminPanel extends AppCompatActivity {
                     final Participants participants = dataSnapshot.getValue(Participants.class);
                     mAdapter.remove(participants);
                     listCount.setText(String.valueOf(reportItemsList.size()));
-                    //To update the list by restarting the activity(workaround)
-                    finish();
-                    overridePendingTransition(0, 0);
-                    startActivity(getIntent());
+
                 }
 
                 public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

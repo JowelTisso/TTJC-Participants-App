@@ -211,10 +211,7 @@ public class ParticipantsDetailActivity extends AppCompatActivity {
                     final Participants friendlyMessage = dataSnapshot.getValue(Participants.class);
                     mAdapter.remove(friendlyMessage);
                     listCount.setText(String.valueOf(reportItemsList.size()));
-                    //To update the list by restarting the activity(workaround)
-                    finish();
-                    overridePendingTransition(0, 0);
-                    startActivity(getIntent());
+
                 }
 
                 public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
