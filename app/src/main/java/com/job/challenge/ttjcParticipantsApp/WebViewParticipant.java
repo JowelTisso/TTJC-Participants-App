@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,6 +59,8 @@ public class WebViewParticipant extends AppCompatActivity {
         mBtnBack = findViewById(R.id.btnBack);
         mBtnClear = findViewById(R.id.btnClear);
 
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(urlx);
 

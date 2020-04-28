@@ -12,6 +12,7 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -184,24 +185,34 @@ public class MainActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
 
+
                     try {
                         jsonResponse = response.body().string();
-                    } catch (IOException e) {
+
+                    } catch (IOException | NullPointerException e) {
+
                         e.printStackTrace();
                     }
                     JSONObject rootObject;
                     try {
-                        rootObject = new JSONObject(jsonResponse);
-                        JSONObject resultObject = rootObject.getJSONObject("result");
-                        JSONObject dataObject = resultObject.getJSONObject("data");
-                        JSONObject allMarkdownRemarkObject = dataObject.getJSONObject("allMarkdownRemark");
-                        JSONArray edgesArray = allMarkdownRemarkObject.getJSONArray("edges");
-                        //Storing the total number of participants in a variable and storing it in a global arrayList
-                        int Count = edgesArray.length();
-                        Participants participants = new Participants(Count);
-                        reportItemsList.add(participants);
+                        if (jsonResponse != null) {
+
+                            rootObject = new JSONObject(jsonResponse);
+                            JSONObject resultObject = rootObject.getJSONObject("result");
+                            JSONObject dataObject = resultObject.getJSONObject("data");
+                            JSONObject allMarkdownRemarkObject = dataObject.getJSONObject("allMarkdownRemark");
+                            JSONArray edgesArray = allMarkdownRemarkObject.getJSONArray("edges");
+                            //Storing the total number of participants in a variable and storing it in a global arrayList
+
+                            int Count = edgesArray.length();
+                            Participants participants = new Participants(Count);
+                            reportItemsList.add(participants);
+                        }
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
+
                     }
                     MainActivity.this.runOnUiThread(new Runnable() {
                         @Override
