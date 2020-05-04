@@ -8,7 +8,7 @@
  Keeping an eye on the timeline of the project will help participants,
  to stay focused and use there time for the project more efficiently.
 
- *This app will be available in the playstore and link will be provided soon.*
+ *This app is now available in the playstore and this is the [link](https://play.google.com/store/apps/details?id=com.job.challenge.ttjcParticipantsApp) *
  
  This repository consist of admin panel version of the app, whereas admin panel will not be available for the play store version.
  As Participants list can be manipulated with it.
