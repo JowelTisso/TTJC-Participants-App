@@ -36,7 +36,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class AdminPanel extends AppCompatActivity {
 
-    private final String twitterAccessToken = "AAAAAAAAAAAAAAAAAAAAAOtMDQEAAAAAshFTWz9%2BKc1Sx2Tiga6ffs7xf%2Bw%3DqkXI8yKBcNHgojZaAKIwyFGTdbsz1QEh49AbWLb0poYiQOpfPV";
+    private final String twitterAccessToken = "";
     private String jsonResponse;
     private ProgressBar progressBar, progressBarList;
     private String profileUrl;
