@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Participant Id"
+            android:text="2KAbhishek"
             android:inputType="text"
             android:lines="1"
             android:maxLines="1"
@@ -76,6 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Loop Count"
+            android:text="388"
             android:inputType="number"
             android:paddingLeft="10dp" />
     </LinearLayout>

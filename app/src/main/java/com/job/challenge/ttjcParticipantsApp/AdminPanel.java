@@ -36,8 +36,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class AdminPanel extends AppCompatActivity {
 
-    //Initial id for starting a loop
-    private String participantId = "4k45hv3rm4";
+    private final String twitterAccessToken = "AAAAAAAAAAAAAAAAAAAAAOtMDQEAAAAAshFTWz9%2BKc1Sx2Tiga6ffs7xf%2Bw%3DqkXI8yKBcNHgojZaAKIwyFGTdbsz1QEh49AbWLb0poYiQOpfPV";
     private String jsonResponse;
     private ProgressBar progressBar, progressBarList;
     private String profileUrl;
@@ -55,7 +54,9 @@ public class AdminPanel extends AppCompatActivity {
     private ImagePopupX imagePopup;
     private Spinner mSpinner;
     private EditText mSearchBar;
-    private final String twitterAccessToken = "";
+    //Initial id for starting a loop
+    private String participantId = "2KAbhishek";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,14 +84,21 @@ public class AdminPanel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (twitterAccessToken.length() != 0) {
-                    if (inputforloopCount != null && inputforloopCount.length() != 0) {
+                    if (inputforloopCount != null && inputforloopCount.length() != 0 && inputforparticipantsId.length() != 0) {
                         inputloopCount = Integer.parseInt(inputforloopCount.getText().toString());
+                        participantId = inputforparticipantsId.getText().toString();
                         progressBar.setVisibility(View.VISIBLE);
                         progressBar.setIndeterminate(false);
 
                         new loopingTasks().execute();
                     } else {
-                        Toast.makeText(AdminPanel.this, " loop count Field Empty", Toast.LENGTH_SHORT).show();
+                        if (inputforloopCount.length() == 0) {
+                            Toast.makeText(AdminPanel.this, " loop count Field Empty", Toast.LENGTH_SHORT).show();
+                        } else if (inputforparticipantsId.length() == 0) {
+                            Toast.makeText(AdminPanel.this, "Starting Id(ParticipantId) field is Empty", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AdminPanel.this, " Both Fields are Empty, Required count & Id for fetching data", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 } else {
                     Toast.makeText(AdminPanel.this, " Access Token Empty", Toast.LENGTH_SHORT).show();

@@ -22,6 +22,7 @@ public class WebViewParticipant extends AppCompatActivity {
     private ImageView mBtnBack;
     private ImageView mBtnClear;
     int participantsWeb = R.style.AppThemeForParticipants;
+    int finalistWeb = R.style.AppThemeForFinalist;
     int treeWeb = R.style.AppThemeForLearningTree;
     int participantsDetailsWeb = R.style.AppThemeForParticipantAnalysis;
     int policyWeb = R.style.AppThemeForPolicy;
@@ -49,6 +50,9 @@ public class WebViewParticipant extends AppCompatActivity {
             case 5:
                 setTheme(aboutWeb);
                 break;
+            case 6:
+                setTheme(finalistWeb);
+                break;
         }
         setContentView(R.layout.activity_web_view2);
 
@@ -63,6 +67,7 @@ public class WebViewParticipant extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(urlx);
+
 
         mWebAddressBar.setOnKeyListener(new View.OnKeyListener() {
             @Override

@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:orientation="horizontal">
 
         <TextView
@@ -66,7 +66,7 @@
                 <LinearLayout
                     android:id="@+id/countContainer"
                     android:layout_width="255dp"
-                    android:layout_height="62dp"
+                    android:layout_height="56dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/background_shadow"
                     android:elevation="5dp"
@@ -105,8 +105,9 @@
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
-                            android:background="@color/colorWhite"
-                             />
+                            style="?android:progressBarStyle"
+                            android:indeterminate="true"
+                            android:progressDrawable="@drawable/circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -158,6 +159,32 @@
                         android:fontFamily="@font/caviardreams_bold"
                         android:padding="15dp"
                         android:text="ttjc Participants"
+                        android:textColor="@color/colorTitlePrimary"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/participantsFinalistContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/background_shadow"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/holo_orange_light" />
+
+                    <Button
+                        android:id="@+id/btnParticipantsFinalist"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_background"
+                        android:fontFamily="@font/caviardreams_bold"
+                        android:padding="15dp"
+                        android:text="ttjc finalist"
                         android:textColor="@color/colorTitlePrimary"
                         android:textSize="18sp" />
                 </LinearLayout>

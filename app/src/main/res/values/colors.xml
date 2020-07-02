@@ -10,6 +10,7 @@
 
     <color name="colorAnalysis">#7A6702</color>
     <color name="colorParticipants">#D27CE1</color>
+    <color name="colorFinalist">#FFD600</color>
     <color name="colorLearningTree">#8F9324</color>
     <color name="colorChat">#6A6767</color>
     <color name="colorTimeline">#1F8F4D</color>

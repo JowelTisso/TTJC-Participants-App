@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDisussion;
     private Button btnProjectPlanner;
     private Button mAdminPanel;
-    LinearLayout countLayout, analysisLayout, participantsLayout, treeLayout, discussionLayout, timelineLayout, adminLayout;
+    LinearLayout countLayout, analysisLayout, participantsLayout, finalistLayout, treeLayout, discussionLayout, timelineLayout, adminLayout;
+    private Button btnFinalistttjc;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnParticipantAnalysis = findViewById(R.id.btnParticipantAnalysis);
         participantsCount = findViewById(R.id.countParticipants);
         btnParticipantsttjc = findViewById(R.id.btnParticipants);
+        btnFinalistttjc = findViewById(R.id.btnParticipantsFinalist);
         btnLinkTree = findViewById(R.id.btnLinkTree);
         btnDisussion = findViewById(R.id.btnDiscussion);
         btnProjectPlanner = findViewById(R.id.btnProjectPlanner);
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         countLayout = findViewById(R.id.countContainer);
         analysisLayout = findViewById(R.id.analysisContainer);
         participantsLayout = findViewById(R.id.participantsContainer);
+        finalistLayout = findViewById(R.id.participantsFinalistContainer);
         treeLayout = findViewById(R.id.LinkTreeContainer);
         discussionLayout = findViewById(R.id.chatContainer);
         timelineLayout = findViewById(R.id.timelineContainer);
@@ -86,6 +89,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 buttonShadowAnimationIntent(event, participantsLayout, WebViewParticipant.class, 3);
+                return false;
+            }
+        });
+
+        btnFinalistttjc.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                buttonShadowAnimationIntent(event, finalistLayout, WebViewParticipant.class, 5);
                 return false;
             }
         });
@@ -159,13 +170,18 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("url", "https://2020.teamtanay.jobchallenge.dev/participants");
                 i.putExtra("counter", 1);
                 startActivity(i);
-            }else if (counter == 4){
+            }else if (counter == 4) {
                 if (isConnectingToInternet(MainActivity.this)) {
                     progressBar.setVisibility(View.VISIBLE);
                     startfetchingdata();
                 } else {
                     progressBar.setVisibility(View.GONE);
                 }
+            } else if (counter == 5) {
+                Intent i = new Intent(MainActivity.this, activity);
+                i.putExtra("url", "https://2020.teamtanay.jobchallenge.dev/finalist");
+                i.putExtra("counter", 6);
+                startActivity(i);
             }
         }
     }
