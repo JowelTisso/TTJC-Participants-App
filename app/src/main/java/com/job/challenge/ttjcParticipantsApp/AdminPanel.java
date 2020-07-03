@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class AdminPanel extends AppCompatActivity {
     private ProgressBar progressBar, progressBarList;
     private String profileUrl;
     private final ArrayList<Participants> reportItemsList = new ArrayList<>();
+    boolean check = false;
     private TextView listCount;
     private EditText inputforparticipantsId;
     private EditText inputforloopCount;
@@ -56,6 +58,9 @@ public class AdminPanel extends AppCompatActivity {
     private EditText mSearchBar;
     //Initial id for starting a loop
     private String participantId = "2KAbhishek";
+    int buttonChecker = 0;
+    String TAG = "TEST";
+    private ArrayList<String> participantIdList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +73,8 @@ public class AdminPanel extends AppCompatActivity {
         Button btnAdd = findViewById(R.id.btnAdd);
         listCount = findViewById(R.id.listCount);
         Button btnforloop = findViewById(R.id.btnLoop);
+        Button btnforstop = findViewById(R.id.btnStop);
         inputforparticipantsId = findViewById(R.id.inputParticipantId);
-        inputforloopCount = findViewById(R.id.loopCountText);
         imagePopup = new ImagePopupX(this);
         mSpinner = findViewById(R.id.spinner);
         mSearchBar = findViewById(R.id.searchBar);
@@ -79,31 +84,29 @@ public class AdminPanel extends AppCompatActivity {
         mAdapter = new ParticipantsAdapter(AdminPanel.this, R.layout.participants_list_model, reportItemsList);
         listView.setAdapter(mAdapter);
 
+
         //This button is for getting the loop count and initiating the loop for the list of participants, to add data to the list in a large number.
         btnforloop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (twitterAccessToken.length() != 0) {
-                    if (inputforloopCount != null && inputforloopCount.length() != 0 && inputforparticipantsId.length() != 0) {
-                        inputloopCount = Integer.parseInt(inputforloopCount.getText().toString());
-                        participantId = inputforparticipantsId.getText().toString();
-                        progressBar.setVisibility(View.VISIBLE);
-                        progressBar.setIndeterminate(false);
+                    check = true;
+                    buttonChecker = 1;
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setIndeterminate(false);
+                    new loopingTasks().execute();
 
-                        new loopingTasks().execute();
-                    } else {
-                        if (inputforloopCount.length() == 0) {
-                            Toast.makeText(AdminPanel.this, " loop count Field Empty", Toast.LENGTH_SHORT).show();
-                        } else if (inputforparticipantsId.length() == 0) {
-                            Toast.makeText(AdminPanel.this, "Starting Id(ParticipantId) field is Empty", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(AdminPanel.this, " Both Fields are Empty, Required count & Id for fetching data", Toast.LENGTH_SHORT).show();
-                        }
-                    }
                 } else {
                     Toast.makeText(AdminPanel.this, " Access Token Empty", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        btnforstop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                check = false;
             }
         });
 
@@ -113,9 +116,13 @@ public class AdminPanel extends AppCompatActivity {
             public void onClick(View v) {
                 if (twitterAccessToken.length() != 0) {
                     if (inputforparticipantsId.length() != 0 && twitterAccessToken.length() != 0) {
+                        buttonChecker = 2;
+                        check = true;
+
                         progressBar.setVisibility(View.VISIBLE);
                         progressBar.setIndeterminate(true);
                         participantId = inputforparticipantsId.getText().toString();
+
                         new loopingTasks().execute();
                     } else {
                         Toast.makeText(AdminPanel.this, "Participant  id Field Empty", Toast.LENGTH_SHORT).show();
@@ -173,9 +180,9 @@ public class AdminPanel extends AppCompatActivity {
         });
 
         //To check internet connection and if available attach database
-        if(MainActivity.isConnectingToInternet(this)){
+        if (MainActivity.isConnectingToInternet(this)) {
             attachDatabaseReadListener(null, 1);
-        }else {
+        } else {
             progressBarList.setVisibility(View.GONE);
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
         }
@@ -247,55 +254,70 @@ public class AdminPanel extends AppCompatActivity {
 
     }
 
-    //To perform http request in the background thread and get json response
-    class loopingTasks extends AsyncTask<Void, Integer, Void> {
+    private void getParticipantIdList(final CountDownLatch countDownLatch) {
+        //Url for the overall participants data from where ids will be collected
+        String Url = "https://2020.teamtanay.jobchallenge.dev/page-data/participants/page-data.json";
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressBar.setMax(inputloopCount);
-        }
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-            progressBar.setProgress(values[0]);
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            for (int i = 0; i < inputloopCount; i++) {
-
-                publishProgress(i);
-                final CountDownLatch countDownLatch = new CountDownLatch(1);
-                //method call to initiate the http request
-                getParticipantsList(countDownLatch);
-                try {
-                    //To make the loop wait for the http request to get result and send an update to the database(firebase)
-                    countDownLatch.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+        OkHttpClientHelper.get(Url, "null", "null", new OkHttpClientHelper.HttpCallback() {
+            @Override
+            public void onFailure(Response response, IOException e) {
+                e.printStackTrace();
             }
 
-            return null;
-        }
+            @Override
+            public void onSuccess(Response response) {
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressBar.setVisibility(View.GONE);
+                if (response.isSuccessful()) {
 
-            listCount.setText(String.valueOf(reportItemsList.size()));
-            inputloopCount = 1;
-        }
+                    try {
+                        jsonResponse = response.body().string();
+
+                    } catch (IOException | NullPointerException e) {
+
+                        e.printStackTrace();
+                    }
+                    JSONObject rootObject;
+                    try {
+                        if (jsonResponse != null) {
+
+                            rootObject = new JSONObject(jsonResponse);
+                            JSONObject resultObject = rootObject.getJSONObject("result");
+                            JSONObject dataObject = resultObject.getJSONObject("data");
+                            JSONObject allMarkdownRemarkObject = dataObject.getJSONObject("allMarkdownRemark");
+                            JSONArray edgesArray = allMarkdownRemarkObject.getJSONArray("edges");
+                            //Storing the total number of participants in a variable and storing it in a global arrayList
+
+                            inputloopCount = edgesArray.length();
+
+                            for (int i = 0; i < edgesArray.length(); i++) {
+                                JSONObject edgeRootObject = edgesArray.getJSONObject(i);
+                                JSONObject nodeObject = edgeRootObject.getJSONObject("node");
+                                JSONObject fieldObject = nodeObject.getJSONObject("fields");
+                                String slug = fieldObject.getString("slug");
+                                String[] split = slug.split("@");
+                                participantIdList.add(split[1]);
+                            }
+                        }
+
+                        countDownLatch.countDown();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                    }
+
+
+                }
+            }
+        });
+
     }
 
-    private void getParticipantsList(final CountDownLatch countDownLatch) {
+    private void getParticipantsList(final CountDownLatch countDownLatch, String participantIdx) {
         //url format for the json link
-        String url = "https://2020.teamtanay.jobchallenge.dev/page-data/ttjc@" + participantId + "/page-data.json";
-        final String pageLink = "https://2020.teamtanay.jobchallenge.dev/ttjc@" + participantId;
+        String url = "https://2020.teamtanay.jobchallenge.dev/page-data/ttjc@" + participantIdx + "/page-data.json";
+        final String pageLink = "https://2020.teamtanay.jobchallenge.dev/ttjc@" + participantIdx;
+
 
         OkHttpClientHelper.get(url, "null", "null", new OkHttpClientHelper.HttpCallback() {
             @Override
@@ -354,17 +376,6 @@ public class AdminPanel extends AppCompatActivity {
                             //If twitter id is not found then send default twitter id
                             getTwitterProfileUrl("twitterdev", countDownLatch, title, desc, pageLink);
                         }
-                        //To get the next participant id for countinuing the loop and fetching data if participant is available
-                        if (pageContextObject.getJSONObject("previous") != null) {
-                            JSONObject previousObject = pageContextObject.getJSONObject("previous");
-                            JSONObject fieldsObject = previousObject.getJSONObject("fields");
-                            String participantIdMix = fieldsObject.getString("slug");
-                            String[] split = participantIdMix.split("@");
-                            participantId = split[1];
-
-                        } else {
-                            participantId = null;
-                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -373,6 +384,76 @@ public class AdminPanel extends AppCompatActivity {
 
             }
         });
+    }
+
+    //To perform http request in the background thread and get json response
+    class loopingTasks extends AsyncTask<Void, Integer, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setMax(388);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            progressBar.setProgress(values[0]);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            try {
+                final CountDownLatch countDownLatch = new CountDownLatch(1);
+                //To fetch the ids of the participants and store it in array list
+                if (buttonChecker == 1) { //To check if button for loop has been pressed or add button has been pressed
+
+                    getParticipantIdList(countDownLatch);
+                    //To wait until the fetching of ids are finished
+
+                    countDownLatch.await();
+
+                } else if (buttonChecker == 2) {
+
+                    inputloopCount = 1;
+                }
+                //To loop through the id list and fetch the participant details
+                for (int i = 0; i < inputloopCount; i++) {
+                    //Force Sleeping the thread to be able to cancel the loop
+                    Thread.sleep(500);
+                    if (check) {
+                        String id = "joweltisso";
+                        if (buttonChecker == 1) {
+                            id = participantIdList.get(i);
+                        } else if (buttonChecker == 2) {
+                            id = participantId;
+                        }
+                        //method call to initiate the http request to get the participant details
+                        getParticipantsList(countDownLatch, id);
+                        //To make the loop wait for the http request to get result and send an update to the database(firebase)
+                        publishProgress(i);
+                    } else {
+
+                    }
+
+
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressBar.setVisibility(View.GONE);
+            listCount.setText(String.valueOf(reportItemsList.size()));
+            inputloopCount = 1;
+
+        }
     }
 
     //Method to get twitter profile picture
@@ -424,7 +505,6 @@ public class AdminPanel extends AppCompatActivity {
         });
 
     }
-
 
     private void attachDatabaseReadListener(final String searchTerm, final int counter) {
         if (mChildEventListener == null) {
@@ -481,7 +561,6 @@ public class AdminPanel extends AppCompatActivity {
             mChildEventListener = null;
         }
     }
-
 
     @Override
     protected void onPause() {

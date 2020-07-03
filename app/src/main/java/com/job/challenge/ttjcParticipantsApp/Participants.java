@@ -1,5 +1,7 @@
 package com.job.challenge.ttjcParticipantsApp;
 
+import java.util.ArrayList;
+
 class Participants {
     private String title;
     private String description;
@@ -7,12 +9,17 @@ class Participants {
     private String pageLink;
     private String twitterProfilePicUrl;
     private int count;
+    private ArrayList<String> participantIdList;
 
     public Participants() {
     }
 
     public Participants(int count) {
         this.count = count;
+    }
+
+    public Participants(ArrayList<String> participantIdList) {
+        this.participantIdList = participantIdList;
     }
 
     public Participants(String title, String desc, String pageLink, String twitterPicUrl, String id) {

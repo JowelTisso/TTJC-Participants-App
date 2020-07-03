@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView participantsCount;
     private final ArrayList<Participants> reportItemsList = new ArrayList<>();
+    private ArrayList<String> participantIdList = new ArrayList<>();
     private Button btnParticipantAnalysis;
     private Button btnParticipantsttjc;
     private Button btnLinkTree;
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("url", "https://2020.teamtanay.jobchallenge.dev/participants");
                 i.putExtra("counter", 1);
                 startActivity(i);
-            }else if (counter == 4) {
+            } else if (counter == 4) {
                 if (isConnectingToInternet(MainActivity.this)) {
                     progressBar.setVisibility(View.VISIBLE);
                     startfetchingdata();
@@ -185,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     //To make an http request to get the total number of participants from the url
     private void startfetchingdata() {
 
@@ -223,6 +225,20 @@ public class MainActivity extends AppCompatActivity {
                             int Count = edgesArray.length();
                             Participants participants = new Participants(Count);
                             reportItemsList.add(participants);
+
+                            Intent countIntent = new Intent(MainActivity.this, AdminPanel.class);
+                            countIntent.putExtra("ParticipantsCount", Count);
+
+                            for (int i = 0; i < edgesArray.length(); i++) {
+                                JSONObject edgeRootObject = edgesArray.getJSONObject(i);
+                                JSONObject nodeObject = edgeRootObject.getJSONObject("node");
+                                JSONObject fieldObject = nodeObject.getJSONObject("fields");
+                                String slug = fieldObject.getString("slug");
+                                String[] split = slug.split("@");
+                                participantIdList.add(split[1]);
+                            }
+
+
                         }
 
 
